@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume recommender</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <p class="kicker">Candidate submission tool</p>
+    <h1>Resume recommender 👋</h1>
+    <p class="sub" id="page-sub">Upload a resume and we'll write the recommendation for you.</p>
+
+    <div class="dots" aria-hidden="true">
+      <div class="dot active" id="d1">1</div>
+      <div class="dot" id="d2">2</div>
+      <div class="dot" id="d3">3</div>
+    </div>
+
+    <div id="error-banner" class="error-banner" role="alert" hidden>
+      <span aria-hidden="true">!</span>
+      <span id="error-text"></span>
+    </div>
+
+    <!-- Page 1: Upload -->
+    <section class="page" id="page-1">
+      <div class="card">
+        <p class="card-title">Upload resume</p>
+        <div
+          class="zone"
+          id="zone"
+          role="button"
+          tabindex="0"
+          aria-label="Upload a resume file, .docx or .pdf"
+        >
+          <div class="zone-icon" id="zone-icon" aria-hidden="true">&#8593;</div>
+          <p class="zone-text" id="zone-text" aria-live="polite">Drop it here or click to browse</p>
+          <p class="zone-sub" id="zone-sub">.docx or .pdf, up to 10MB</p>
+          <input id="file-input" type="file" accept=".docx,.pdf" hidden />
+        </div>
+        <div style="text-align:center;">
+          <span class="filename" id="filename" hidden></span>
+        </div>
+
+        <div class="fallback" id="fallback" hidden>
+          <p class="card-title" id="fallback-title">Paste the resume text instead</p>
+          <textarea id="fallback-text" placeholder="Paste resume text here..."></textarea>
+          <div class="row">
+            <button class="pill pill-primary" id="fallback-submit">
+              <span id="fallback-btn-label">Generate recommendation</span>
+            </button>
+          </div>
+        </div>
+
+        <p class="ready-note" id="ready-note" hidden>&#10003; Recommendation ready — click Next to review</p>
+        <button class="link" id="reset-btn" hidden>Upload a different resume</button>
+      </div>
+    </section>
+
+    <!-- Page 2: Recommendation (English) -->
+    <section class="page" id="page-2" hidden>
+      <div class="card">
+        <span class="badge">&#10003; Ready to submit</span>
+        <p class="card-title">Recommendation</p>
+        <textarea id="rec-text"></textarea>
+        <div class="row">
+          <button class="pill pill-ghost" id="copy-rec">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 3: Translation (Chinese) -->
+    <section class="page" id="page-3" hidden>
+      <div class="card">
+        <p class="card-title">中文 translation</p>
+        <textarea id="trans-text"></textarea>
+        <div class="row">
+          <button class="pill pill-ghost" id="copy-trans">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-row" id="nav-row">
+      <button class="pill pill-ghost" id="back-btn" hidden>Back</button>
+      <button class="pill pill-primary" id="forward-btn" disabled>Next</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
