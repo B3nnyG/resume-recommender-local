@@ -5,7 +5,7 @@ const express = require("express");
 const multer = require("multer");
 const mammoth = require("mammoth");
 const pdfjsLib = require("pdfjs-dist/legacy/build/pdf.js");
-
+pdfjsLib.GlobalWorkerOptions.workerSrc = require.resolve("pdfjs-dist/legacy/build/pdf.worker.js");
 async function extractPdfText(buffer) {
   const data = new Uint8Array(buffer);
   const pdf = await pdfjsLib.getDocument({ data }).promise;
